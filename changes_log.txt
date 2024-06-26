@@ -1,0 +1,23 @@
+trainer.py   ./do_all.sh msrvtt10k hybrid resnext101-resnet152 /home/mrim/deviv/VisualSearch test_modifs "postfix"
+
+    -- Added the option for saving training results in long path or in short path using argument 'opt.exp_name'
+    -- resumed function corrected by adding if and else opt.space condition for validation of resumend results
+    -- For training concept based only, added line 273-274 added for concept based results evaluation
+    
+tester.py
+
+    - saving results in longer or shorted path depending on training directory
+    - the results are now not saving inside model_best folder, .pth is removed, the results are now saving inside /model_best/postfix_folder/
+    - evaluate the trained hybrid model for all three space i.e. latent, concept and hybrid space 
+    
+validate.py
+
+    - the validation for all the spaces while training as well (changes in validate() and validate_hybrid() functions)
+    - validation of concept space, so added validate_concept() function in validation.py
+   
+
+*********** For Concept Based Training option ***************************
+
+- model.py (NB: model_v0.py is the original one)
+    -- line 614: added a model name : dual_encoding_concept
+    -- line 630-631: Concept_mapping function (defined and created above)
